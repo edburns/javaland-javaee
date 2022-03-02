@@ -107,6 +107,9 @@ jobs:
               uses: actions/checkout@v2
               with:
                 path: cargotracker
+            - name: Find files
+              run: |
+                find . -type f -print
             - name: Prepare parameter file
               run: |
                 echo "replace placeholders using real parameter"
