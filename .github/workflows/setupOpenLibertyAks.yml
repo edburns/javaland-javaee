@@ -6,6 +6,10 @@ on:
       disambiguationSuffix:
         description: 'Included in names to disambiguate. Get from another pipeline execution'
         required: true
+      region:
+        description: 'Azure region for resources'
+        required: true
+        default: eastus
   repository_dispatch:
 
 env:
@@ -13,7 +17,7 @@ env:
     refJavaee: 85d5d10dd045a90452ae01cad20b258ce853ec18
     azCliVersion: 2.30.0
     azureCredentials: ${{ secrets.AZURE_CREDENTIALS }}
-    location: eastus
+    location: ${{ github.event.inputs.region }}
     resourceGroupForOpenLibertyAks: ol-aks-${{ github.event.inputs.disambiguationSuffix }}-${{ github.run_number }}
     userAssignedManagedIdentity: ${{ secrets.USER_ASSIGNED_MANAGED_IDENTITY_ID }}
     aksRepoUserName: WASdev
