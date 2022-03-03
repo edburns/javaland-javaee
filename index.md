@@ -103,29 +103,22 @@ details not suitable for putting in the live repository.
 
 <details>
   <summary>
-    <b>15min</b> Use the Portal to deploy a sample app.
+    <b>15min</b> <b>Self-guided</b>. Use the Portal to deploy a sample app.
   </summary>
 
 1. Visit the Portal [https://aka.ms/publicportal](https://aka.ms/publicportal).
 
 1. In the search box, without pressing enter, type "websphere" without the quotes.
 
-1. In the section of suggested results labeled **Marketplace** select **IBM WebSphere Liberty and Open Liberty on Azure Kubrenets Service".
+1. In the section of suggested results labeled **Marketplace** select **IBM WebSphere Liberty and Open Liberty on Azure Kubrenets Service**.
 
 1. Select **Create**.
 
-1. In **Resource group** select **Create new**.  In the dialog that appears, enter the next number to the sequence number you entered in `setup.sh`, followed by the date in mmdd syntax.  For example, if you entered `ejb01`, you would enter `ejb02{{ site.data.var.workshopmmdd }}`.
+{% include new-resource-group.md %}
 
 1. In **Region** enter `{{ site.data.var.region }}`.
 
-1. Read warning box.  This is why we had you create the UAMI and
-   assign it the necessary roles.
-   
-1. Select the **+Add** control.
-
-1. In the sidebar, select the UAMI created by script.  It should be something like `ejb01{{ site.data.var.workshopmmdd }}u`.
-
-1. In the sidebar, select **Add**.  This should dismiss the sidebar and cause the warning box to disappear.
+{% include add-uami.md %}
 
 1. Scroll down and note the hyperlinks in the **Report issues, get
    help, and share feedback** section.  The links will open in a new
@@ -160,25 +153,9 @@ details not suitable for putting in the live repository.
     <b>15Min</b> Take a tour of the deployment.
   </summary>
 
-1. **Self-guided**. How to find resource groups in the Portal.
+{% include find-resource-groups.md %}
 
-   1. Visit the Portal.
-   
-   1. Select **Resource groups**.
-   
-   1. In the filter, enter the first three characters of the prefix
-      you used in `setup.sh`.
-      
-   1. Select your resource group.
-   
-1. **Self-guided**. How to find outputs in a resource group.
-
-   1. In the pane under the **Resource group** name, in the
-      **Settings** section, select **Deployments**.
-      
-   1. Select the bottom most deployment in the list.
-   
-   1. In the left pane, select **Outputs**.
+{% include find-outputs.md %}
 
 1. Examine the outputs.
 
@@ -384,6 +361,229 @@ The Cargo Tracker main URL is the URL constructed in the preceding step.
 </details>
 
 </details>
+
+<details>
+  <summary>
+    <b>90min</b> Run IBM Open Liberty locally. (Optional)
+  </summary>
+  
+### Install summary 
+
+</details>
+
+## WebLogic Server on AKS
+
+<details>
+  <summary>
+    <b>90min</b> Deploy a reasonably capable cluster with the Portal
+  </summary>
+  
+### Deploy a WLS cluster with Azure App Gateway with the Portal
+
+<details>
+  <summary>
+    <b>20min</b> <b>Self-guided</b>. Use the Portal to deploy cargotracker inside of WLS on AKS.
+  </summary>
+  
+1. Visit the Portal [https://aka.ms/publicportal](https://aka.ms/publicportal).
+
+1. In the search box, without pressing enter, type "weblogic" without the quotes.
+
+1. In the section of suggested results labeled **Marketplace**, select **Oracle WebLogic Server on Azure Kubrenets Service**.
+
+1. Select **Create**.
+
+{% include new-resource-group.md %}
+
+1. In **Region** enter `{{ site.data.var.region }}`.
+
+1. Leave **Username for WebLogic Administrator** with the default value.
+
+1. For **Password for WebLogic Administrator** and following password fields use `{{ site.data.var.workshopPassword }}`.
+
+{% include add-uami.md %}
+
+1. On **Optional Basic Configuration** select **No** and examine the options.  Note you can specify Java JVM options here.
+
+1. Select **Yes** to close the **Optional Basic Configuration**.
+
+1. Scroll down and note the hyperlinks in the **Report issues, get
+   help, and share feedback** section.  The links will open in a new
+   tab.  We especially encourage you to take the survey about Java EE
+   usage.  this will help us create better Java EE on Azure offers.
+   
+1. Select **Next: Configure AKS cluster**.
+
+1. Explore the options available, but do not select any of the following.
+   
+   1. [Azure Container Insights integration](https://aka.ms/wls-aks-container-insights)
+   
+   1. [Persist Volume integration](https://docs.microsoft.com/en-us/azure/aks/concepts-storage)
+
+1. In **Image selection** leave the values at the defaults.
+
+1. In **Username for Oracle Single Sign-On authentication** and the
+   corresponding password field, use the values provided by the
+   instructor in the Etherpad.
+   
+1. In **Is the specified SSO account associated with an active Oracle
+   support contract?**, select **No**.
+   
+      **IMPORTANT** This offer really should only be used with an
+      active Oracle support contract.  Without a support contract, you
+      are running software that has not been patched against the
+      latest security vulnerabilities, including the infamous
+      Log4shell.
+      
+      Thankfully, for this workshop, we are also deploying Azure App
+      Gateway, and the offer sets up OWASP rules to protect against
+      some of the vulnerabilities.
+      
+1. In the **Select desired combination of WebLogic...** drop down,
+   leave the default, but explore the other available options.
+   
+1. In the **Java EE Application** section, ensure **Yes** is selected.
+
+1. Select the **Browse** button.
+
+1. In the **Storage accounts** browser, select the storage account
+   created by the workflow you ran previously. It will be something
+   like `wlsdsa19251229631`.
+   
+1. In the **Containers** section, select the storage container
+   created by the workflow you ran previously. It will be something
+   like `wlsdcon19251229631`.
+   
+1. In the **Container**, select **cargo-tracker.war**.  This also was
+   generated by the workflow you ran previously.
+   
+1. Select **Select**.
+
+1. Leave the remaining values at their defaults.
+
+1. Select **Next: TLS/SSL configuration**.
+
+1. This tab lets you configure end-to-end TLS connections.  Explore the values, but leave it set at **No**.
+
+1. Select **Next: Networking**.
+
+1. Leave **Standard Load Balancer service** at **No**, but feel free
+   to explore the documentation link.
+   
+1. In **Application Gateway Ingress Controller** select **Yes**.
+
+1. The offer provides several ways to upload the certificates
+   necessary to enable App Gateway integration.  Select **Generate a
+   self-signed front-end certificate**.
+   
+1. For **Service Principal** refer to the output from the `setup.sh`
+   script you ran at the beginning of the workshop.  Find the value
+   for `SERVICE_PRINCIPAL`.  Copy it to the clipboard.  Be extremely
+   careful to get the whole value.
+   
+1. To verify you have it all, you can enter the following command in
+   the Cloud Shell.
+   
+      `echo <paste> | base64 -d` and press enter.`
+      
+      If you see valid JSON, you have captured the entire base64
+      string to the clipboard.  Save the decoded value in your text
+      file, in case you need it later.
+   
+1. Paste this value into the **Service Principal** and **Confirm password** fields.
+
+1. Ensure **Enable cookie based affinity** is checked.
+
+1. Leave the remaining values at their defaults.
+
+1. Select **Next: DNS configuration**.
+
+1. This tab lets you connect a DNS zone to your WLS on AKS.  Explore
+   the values, but leave it set at **No**.
+   
+1. Select **Next: Database**.
+
+1. For **Connect to database?** select **Yes**.
+
+1. For the **Choose database type** select **Azure Database for PostgreSQL**.
+
+1. For **JNDI name** enter `jdbc/CargoTrackerDB`.
+
+1. For **Datasource Connection String** enter `jdbc:postgresql://<dbName>.postgres.database.azure.com:5432/postgres`, where `<dbName>` is the value you captured above for database name.  This will be something like `wlsdb19251229631`.
+
+1. For **Global transactions protocol** Select **EmulateTwoPhaseCommit**.
+
+1. For **Database username** enter `weblogic`.  This value was set as a secret in `setup.sh`.
+
+1. For **Database Password** enter `Secret123!`.  This value was set as a secret in `setup.sh`.  Make sure to get the exclamation point.
+
+1. Select **Next: Review + create**.
+
+1. When the green **Validation passed** message appears, select
+   **Create**.  This starts deployment.
+
+</details>
+
+### During deployment, instructor lead training for WebLogic Server
+
+### After deployment completes
+
+<details>
+  <summary>
+    <b>15Min</b> Take a tour of the deployment.
+  </summary>
+
+{% include find-resource-groups.md %}
+
+{% include find-outputs.md %}
+
+PENDING: START HERE
+1. Examine the outputs.
+
+1. How to connect to cluster with `kubectl` in Cloud Shell.
+
+   1. `az aks` command reference [docs.microsoft.com](https://docs.microsoft.com/en-us/cli/azure/aks?view=azure-cli-latest)
+
+1. **Self-guided**. How to visit the sample app.
+
+   1. Execute the **cmdToGetAppService**.
+   
+   1. Fashion the **EXTERNAL-IP** and **PORT** values into a URL such as `http://52.182.209.67:9080/`.
+   
+   1. Visit the URL in your browser.  Explore the sample app.
+   
+1. Examine **appDeploymentTemplateYamlEncoded**.
+
+   1. Copy the value of that output using the icon.
+   
+   1. In the Cloud Shell, execute `echo <paste> | base64 -d` and press enter.
+   
+   1. This is the deployment YAML you can use to update the offer.
+      The pipeline will revisit use this value.  You do not need to save it now.
+
+</details>
+
+### Remove deployment
+
+<details>
+  <summary>
+    <b>5min</b> Remove resources to save your subscription cost.
+  </summary>
+
+You must remove the deployment to avoid consuming more Azure resources
+than your pass allows.
+
+1. In Cloud Shell, enter `az aks delete --no-wait --name <your cluster name> --resource-group <your resource group>`.
+
+1. In the Portal, find `<your resource group>` and select **Delete resource group**.
+
+1. Copy past the name of the resource group and select **Delete**.
+
+</details>
+
+</details>
+
+
 
 ## WORK IN PROGRESS
 

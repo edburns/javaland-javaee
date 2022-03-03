@@ -2,6 +2,7 @@ repoOwner: edburns
 region: West Europe
 regionShort: westeurope
 workshopmmdd: "0317"
+workshopPassword: "javaLandMar2022"
 repoPath: javaland-javaee
 azureFullBrandName: Microsoft Azure IaaS
 aksFullName: Azure Kubernetes Service
