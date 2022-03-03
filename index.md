@@ -14,10 +14,12 @@ https://github.com/Azure-Samples/cargotracker-azure-workshop .
 The instructor will use an etherpad to share credentials and other
 details not suitable for putting in the live repository.
 
-Update with link to etherpad from
-[riseup.net](https://pad.riseup.net/).
+<details>
+  <summary>
+    PENDING ACTIONS BEFORE WORKSHOP DELIVERY
+  </summary>
 
-## Outline
+PENDING Update with link to etherpad from [riseup.net](https://pad.riseup.net/).
 
 PENDING: fill in after morning reaches second draft state.
 
@@ -29,7 +31,15 @@ PENDING: create slides for instructor lead training for Open Liberty on AKS
 
 PENDING: TOC https://github.com/toshimaru/jekyll-toc/#installation
 
+</details>
+
+
 ## Common set up for the rest of the day
+
+<details>
+  <summary>
+    Configure essential credentials for the workshop.
+  </summary>
 
 1. **10min** **Self-guided**. Activate your azure pass to create your subscription.
 
@@ -100,9 +110,16 @@ PENDING: TOC https://github.com/toshimaru/jekyll-toc/#installation
 
       b. Use the Portal to assign the **Directory Readers** role in Azure AD.
 
+</details>
+
 ## Open Liberty on AKS
 
 ### Deploy the minimum viable cluster with the Portal
+
+<details>
+  <summary>
+    Use the Portal to deploy a sample app.
+  </summary>
 
 1. Visit the Portal [https://aka.ms/publicportal](https://aka.ms/publicportal).
 
@@ -146,10 +163,17 @@ PENDING: TOC https://github.com/toshimaru/jekyll-toc/#installation
 
 1. When the green **Validation passed** message appears, select
    **Create**.  This starts deployment.
-   
+
+</details>
+
 ### During deployment, instructor lead training for Open Liberty
 
-### When deployment completes
+### After deployment completes
+
+<details>
+  <summary>
+    Take a tour of the deployment.
+  </summary>
 
 1. **Self-guided**. How to find resource groups in the Portal.
 
@@ -194,7 +218,14 @@ PENDING: TOC https://github.com/toshimaru/jekyll-toc/#installation
    1. This is the deployment YAML you can use to update the offer.
       The pipeline will revisit use this value.  You do not need to save it now.
 
+</details>
+
 ### Remove deployment
+
+<details>
+  <summary>
+    Remove resources to save your subscription cost.
+  </summary>
 
 You must remove the deployment to avoid consuming more Azure resources
 than your pass allows.
@@ -205,7 +236,15 @@ than your pass allows.
 
 1. Copy past the name of the resource group and select **Delete**.
 
-### Deploy with minimum viable runtime with GitHub Actions Infrastructure as Code
+</details>
+
+
+### Deploy a non-trivial sample app with GitHub Actions Infrastructure as Code
+
+<details>
+  <summary>
+    Go further and add database an JMS support.
+  </summary>
 
 #### Deploy Database and Storage Account for Cargotracker on Liberty and WLS on AKS
 
@@ -357,6 +396,13 @@ The Cargo Tracker main URL is the URL constructed in the preceding step.
 
 {% include exercise-cargotracker.md %}
 
+</details>
+
+<details>
+  <summary>
+    WORK IN PROGRESS
+  </summary>
+
    C. Cargotracker
    
       1. Run locally with Liberty Maven Plugin devc mode.
@@ -386,7 +432,10 @@ IV. WebLogic on AKS
    D. Cargotracker
    
       1. Update workflow.
+      
 
 ##### Afternoon: JBoss EAP on App Service
 
   Copy Jason Freeberg's workshop.  See https://dev.azure.com/{{ site.data.var.repoOwner }}-msft/Ed%20Burns%20Personal/_workitems/edit/1296
+
+</details>
