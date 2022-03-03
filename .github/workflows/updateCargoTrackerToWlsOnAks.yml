@@ -1,4 +1,4 @@
-name: Update Cargo Tracker
+name: Update Cargo Tracker to WLS on AKS
 
 on:
   workflow_dispatch:
