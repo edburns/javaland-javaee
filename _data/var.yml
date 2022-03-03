@@ -1,9 +1,11 @@
-# Copyright (c) 2021, Oracle and/or its affiliates.
-# Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
-
+repoOwner: edburns
+region: West Europe
+regionShort: westeurope
+workshopmmdd: "0317"
+repoPath: javaland-javaee
 azureFullBrandName: Microsoft Azure IaaS
 aksFullName: Azure Kubernetes Service
-wlsFullBrandName: Oracle WebLogic Server
+wlsFullBrandName: Jakarta EE on Microsoft Azure with Cargo Tracker
 brandNameNumber: 12c
 partNumber: E48696-01
 publicationDate: March 2021
