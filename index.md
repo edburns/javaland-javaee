@@ -6,39 +6,18 @@ leads the students in the execution of steps.
 
 ## Why a non-official repo?
 
-This workshop is work in progress for the currently 404
-https://github.com/Azure-Samples/cargotracker-azure-workshop .
+This workshop is work in progress destined for https://github.com/Azure-Samples/cargotracker-azure-workshop.
 
 ## Etherpad for sharing text between students and instructors
 
 The instructor will use an etherpad to share credentials and other
 details not suitable for putting in the live repository.
 
-<details>
-  <summary>
-    PENDING ACTIONS BEFORE WORKSHOP DELIVERY
-  </summary>
-
-PENDING Update with link to etherpad from [riseup.net](https://pad.riseup.net/).
-
-PENDING: fill in after morning reaches second draft state.
-
-PENDING: remove /en-us from all embedded links.
-
-PENDING: ensure the `setup.sh` script does what we need it to do.
-
-PENDING: create slides for instructor lead training for Open Liberty on AKS
-
-PENDING: TOC https://github.com/toshimaru/jekyll-toc/#installation
-
-</details>
-
-
 ## Common set up for the rest of the day
 
 <details>
   <summary>
-    Configure essential credentials for the workshop.
+    <b>25min</b> Configure essential credentials for the workshop.
   </summary>
 
 1. **10min** **Self-guided**. Activate your azure pass to create your subscription.
@@ -114,11 +93,17 @@ PENDING: TOC https://github.com/toshimaru/jekyll-toc/#installation
 
 ## Open Liberty on AKS
 
+
+<details>
+  <summary>
+    <b>90min</b> Run IBM Open Liberty on AKS.
+  </summary>
+
 ### Deploy the minimum viable cluster with the Portal
 
 <details>
   <summary>
-    Use the Portal to deploy a sample app.
+    <b>15min</b> Use the Portal to deploy a sample app.
   </summary>
 
 1. Visit the Portal [https://aka.ms/publicportal](https://aka.ms/publicportal).
@@ -172,7 +157,7 @@ PENDING: TOC https://github.com/toshimaru/jekyll-toc/#installation
 
 <details>
   <summary>
-    Take a tour of the deployment.
+    <b>15Min</b> Take a tour of the deployment.
   </summary>
 
 1. **Self-guided**. How to find resource groups in the Portal.
@@ -209,7 +194,7 @@ PENDING: TOC https://github.com/toshimaru/jekyll-toc/#installation
    
    1. Visit the URL in your browser.  Explore the sample app.
    
-1. Examine **appDeploymentTemplateYamlEncoded **.
+1. Examine **appDeploymentTemplateYamlEncoded**.
 
    1. Copy the value of that output using the icon.
    
@@ -224,7 +209,7 @@ PENDING: TOC https://github.com/toshimaru/jekyll-toc/#installation
 
 <details>
   <summary>
-    Remove resources to save your subscription cost.
+    <b>5min</b> Remove resources to save your subscription cost.
   </summary>
 
 You must remove the deployment to avoid consuming more Azure resources
@@ -243,7 +228,7 @@ than your pass allows.
 
 <details>
   <summary>
-    Go further and add database an JMS support.
+    <b>60min</b> Go further and add database an JMS support.
   </summary>
 
 #### Deploy Database and Storage Account for Cargotracker on Liberty and WLS on AKS
@@ -398,10 +383,33 @@ The Cargo Tracker main URL is the URL constructed in the preceding step.
 
 </details>
 
+</details>
+
+## WORK IN PROGRESS
+
 <details>
   <summary>
     WORK IN PROGRESS
   </summary>
+  
+<details>
+  <summary>
+    PENDING ACTIONS BEFORE WORKSHOP DELIVERY
+  </summary>
+
+PENDING Update with link to etherpad from [riseup.net](https://pad.riseup.net/).
+
+PENDING: fill in after morning reaches second draft state.
+
+PENDING: remove /en-us from all embedded links.
+
+PENDING: ensure the `setup.sh` script does what we need it to do.
+
+PENDING: create slides for instructor lead training for Open Liberty on AKS
+
+PENDING: TOC https://github.com/toshimaru/jekyll-toc/#installation
+
+</details>
 
    C. Cargotracker
    
