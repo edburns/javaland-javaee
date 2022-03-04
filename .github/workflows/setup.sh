@@ -3,7 +3,7 @@
 # This script is invoked by a human who:
 # - has done az login.
 # - can create repository secrets in the github repo from which this file was cloned.
-# - has the gh client >= 2.5.2 installed.
+# - has the gh client >= 2.0.0 installed.
 #
 # This script initializes the repo from which this file is was cloned
 # with the necessary secrets to run the workflows.
@@ -150,12 +150,12 @@ USER_ASSIGNED_MANAGED_IDENTITY_ID_NOT_ESCAPED=$(az identity show --name ${USER_A
 
 ### AZ ACTION MUTATE
 
-msg "${GREEN}(5/6) Grant Owner role in subscription scope to ${USER_ASSIGNED_MANAGED_IDENTITY_NAME}. Sleeping for ${SLEEP_VALUE} first."
+msg "${GREEN}(5/6) Grant Contributor role in subscription scope to ${USER_ASSIGNED_MANAGED_IDENTITY_NAME}. Sleeping for ${SLEEP_VALUE} first."
 sleep ${SLEEP_VALUE}
 ASSIGNEE_OBJECT_ID=$(az identity show --name ${USER_ASSIGNED_MANAGED_IDENTITY_NAME} --resource-group ${USER_ASSIGNED_MANAGED_IDENTITY_NAME} --query principalId)
 # strip quotes
 ASSIGNEE_OBJECT_ID=${ASSIGNEE_OBJECT_ID//\"/}
-az role assignment create --role Owner --assignee-principal-type ServicePrincipal --assignee-object-id ${ASSIGNEE_OBJECT_ID} --subscription ${SUBSCRIPTION_ID} --scope /subscriptions/${SUBSCRIPTION_ID}
+az role assignment create --role Contributor --assignee-principal-type ServicePrincipal --assignee-object-id ${ASSIGNEE_OBJECT_ID} --subscription ${SUBSCRIPTION_ID} --scope /subscriptions/${SUBSCRIPTION_ID}
 
 # https://stackoverflow.com/questions/13210880/replace-one-substring-for-another-string-in-shell-script
 USER_ASSIGNED_MANAGED_IDENTITY_ID=${USER_ASSIGNED_MANAGED_IDENTITY_ID_NOT_ESCAPED//\//\\/}
