@@ -2,3 +2,7 @@ markdown: CommonMarkGhPages
 
 theme: jekyll-theme-primer
 repository: "edburns/javaland-javaee"
+
+commonmark:
+  options: ["UNSAFE", "SMART", "FOOTNOTES"]
+  extensions: ["strikethrough", "autolink", "table", "tagfilter"]
