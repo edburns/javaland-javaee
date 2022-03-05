@@ -7,3 +7,5 @@
 
 1. In the sidebar, select **Add**.  This should dismiss the sidebar and cause the warning box to disappear.
 
+1. If the UAMI you created is not appearing, sign out of the Portal,
+   sign back in and try again.
