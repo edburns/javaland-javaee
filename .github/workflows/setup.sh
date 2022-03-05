@@ -72,6 +72,8 @@ if [ "$ORC_SSOPSW" == '' ] ; then
     read -s -r -p "Enter password for preceding Oracle single sign-on userid: " ORC_SSOPSW
 fi
 
+echo -e "\n"
+
 # get OWNER_REPONAME if not set at the beginning of this file
 if [ "$OWNER_REPONAME" == '' ] ; then
     read -r -p "Enter owner/reponame (blank for upsteam of current fork): " OWNER_REPONAME
@@ -133,13 +135,13 @@ USE_GITHUB_CLI=false
 }
 
 # Execute commands
-msg "${GREEN}(3/6) Create service principal and Azure credentials ${SERVICE_PRINCIPAL_NAME}"
+msg "${GREEN}(3/6) Create service principal and Azure credentials ${SERVICE_PRINCIPAL_NAME} with Contributor role in subscription scope."
 SUBSCRIPTION_ID=$(az account show --query id --output tsv --only-show-errors)
 
 ### AZ ACTION CREATE
 
-SERVICE_PRINCIPAL=$(az ad sp create-for-rbac --name ${SERVICE_PRINCIPAL_NAME} --role="Contributor" --scopes="/subscriptions/${SUBSCRIPTION_ID}" --sdk-auth --only-show-errors | base64 -w0)
-AZURE_CREDENTIALS=$(echo $SERVICE_PRINCIPAL | base64 -d)
+SERVICE_PRINCIPAL_BASE64=$(az ad sp create-for-rbac --name ${SERVICE_PRINCIPAL_NAME} --role "Contributor" --scopes "/subscriptions/${SUBSCRIPTION_ID}" --sdk-auth --only-show-errors | base64 -w0)
+AZURE_CREDENTIALS=$(echo $SERVICE_PRINCIPAL_BASE64 | base64 -d)
 
 ### AZ ACTION CREATE
 
@@ -150,12 +152,12 @@ USER_ASSIGNED_MANAGED_IDENTITY_ID_NOT_ESCAPED=$(az identity show --name ${USER_A
 
 ### AZ ACTION MUTATE
 
-msg "${GREEN}(5/6) Grant Contributor role in subscription scope to ${USER_ASSIGNED_MANAGED_IDENTITY_NAME}. Sleeping for ${SLEEP_VALUE} first."
+msg "${GREEN}(5/6) Grant Owner role in subscription scope to ${USER_ASSIGNED_MANAGED_IDENTITY_NAME}. Sleeping for ${SLEEP_VALUE} first."
 sleep ${SLEEP_VALUE}
 ASSIGNEE_OBJECT_ID=$(az identity show --name ${USER_ASSIGNED_MANAGED_IDENTITY_NAME} --resource-group ${USER_ASSIGNED_MANAGED_IDENTITY_NAME} --query principalId)
 # strip quotes
 ASSIGNEE_OBJECT_ID=${ASSIGNEE_OBJECT_ID//\"/}
-az role assignment create --role Contributor --assignee-principal-type ServicePrincipal --assignee-object-id ${ASSIGNEE_OBJECT_ID} --subscription ${SUBSCRIPTION_ID} --scope /subscriptions/${SUBSCRIPTION_ID}
+az role assignment create --role Owner --assignee-principal-type ServicePrincipal --assignee-object-id ${ASSIGNEE_OBJECT_ID} --subscription ${SUBSCRIPTION_ID} --scope /subscriptions/${SUBSCRIPTION_ID}
 
 # https://stackoverflow.com/questions/13210880/replace-one-substring-for-another-string-in-shell-script
 USER_ASSIGNED_MANAGED_IDENTITY_ID=${USER_ASSIGNED_MANAGED_IDENTITY_ID_NOT_ESCAPED//\//\\/}
@@ -173,9 +175,9 @@ if $USE_GITHUB_CLI; then
     gh ${GH_FLAGS} secret set DB_PASSWORD -b"${DB_PASSWORD}"
     gh ${GH_FLAGS} secret set ORC_SSOPSW -b"${ORC_SSOPSW}"
     gh ${GH_FLAGS} secret set ORC_SSOUSER -b"${ORC_SSOUSER}"
-    gh ${GH_FLAGS} secret set SERVICE_PRINCIPAL -b"${SERVICE_PRINCIPAL}"
+    gh ${GH_FLAGS} secret set SERVICE_PRINCIPAL -b"${SERVICE_PRINCIPAL_BASE64}"
     msg "${YELLOW}\"SERVICE_PRINCIPAL\""
-    msg "${GREEN}${SERVICE_PRINCIPAL}"
+    msg "${GREEN}${SERVICE_PRINCIPAL_BASE64}"
     gh ${GH_FLAGS} secret set USER_ASSIGNED_MANAGED_IDENTITY_ID -b"${USER_ASSIGNED_MANAGED_IDENTITY_ID}"
     msg "${YELLOW}\"USER_ASSIGNED_MANAGED_IDENTITY_ID\""
     msg "${GREEN}${USER_ASSIGNED_MANAGED_IDENTITY_ID}"
@@ -203,7 +205,7 @@ if [ $USE_GITHUB_CLI == false ]; then
   msg "${YELLOW}\"ORC_SSOUSER\""
   msg "${GREEN}${ORC_SSOUSER}"
   msg "${YELLOW}\"SERVICE_PRINCIPAL\""
-  msg "${GREEN}${SERVICE_PRINCIPAL}"
+  msg "${GREEN}${SERVICE_PRINCIPAL_BASE64}"
   msg "${YELLOW}\"USER_ASSIGNED_MANAGED_IDENTITY_ID\""
   msg "${GREEN}${USER_ASSIGNED_MANAGED_IDENTITY_ID}"
   msg "${YELLOW}\"WDT_RUNTIMEPSW\""
