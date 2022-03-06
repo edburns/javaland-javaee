@@ -9,6 +9,7 @@ aksFullName: Azure Kubernetes Service
 wlsFullBrandName: Jakarta EE on Microsoft Azure with Cargo Tracker
 brandNameNumber: 12c
 partNumber: E48696-01
+docsMicrosoftCom: "https://docs.microsoft.com"
 publicationDate: March 2021
 versionOr: 12.1.2.3
 # versionOr: 12.1.2.3 or 12.1.2.4 # edburns: only support 12.2.1.3 now.

@@ -13,6 +13,8 @@ This workshop is work in progress destined for https://github.com/Azure-Samples/
 The instructor will use an etherpad to share credentials and other
 details not suitable for putting in the live repository.
 
+PENDING Update with link to etherpad from [riseup.net](https://pad.riseup.net/).
+
 ## Common set up for the rest of the day
 
 <details>
@@ -24,7 +26,7 @@ details not suitable for putting in the live repository.
 
 1. **5min** **Self-guided**. Make sure Azure Cloud Shell works in your subscription.
 
-   - [Cloud Shell overview](https://docs.microsoft.com/en-us/azure/cloud-shell/overview)
+   - [Cloud Shell overview]({{ site.data.var.docsMicrosoftCom }}/azure/cloud-shell/overview)
    - We will be using the **bash** variant of Azure Cloud Shell.
    
    - The first time you open the cloud shell, you must accept creating
@@ -93,6 +95,8 @@ details not suitable for putting in the live repository.
       it.  You might need to refer to the contents to allow the
       instructor to help you if you get stuck.  Also, if the Cloud
       Shell is allowed to time out, you will need these values.
+      Finally, the disambiguation prefix is used by another script to
+      remove the resources at the of day.
    
 1. **15min** Perform additional set up steps in the Azure Portal [https://aka.ms/publicportal](https://aka.ms/publicportal)
    
@@ -111,9 +115,11 @@ details not suitable for putting in the live repository.
    
    1. In the textfield labeled **Search**, enter the prefix you
       entered for the first question in the `setup.sh`.  In the
-      suggestions, be sure to select the one that matches
-      `<prefix>mmyyu` where `mmyy` is today's date in mmyy format.
-      The `u` is for User Assigned Managed Identity.
+      suggestions, be sure to select the one right one.  You need the
+      one that ends in `u`.  The `u` is for User Assigned Managed
+      Identity.  It will match the format `<prefix>mmyyu` where `mmyy`
+      is today's date in mmyy format.
+      
       
    1. Select **Add**.
    
@@ -131,9 +137,9 @@ details not suitable for putting in the live repository.
       * This concept is implemented with a combination of two Azure
         role based access control (RBAC) technologies:
         
-         - [Azure RBAC](https://docs.microsoft.com/en-us/azure/role-based-access-control/overview)
+         - [Azure RBAC]({{ site.data.var.docsMicrosoftCom }}/azure/role-based-access-control/overview)
 
-          - [Azure AD RBAC](https://docs.microsoft.com/en-us/azure/active-directory/roles/custom-overview)
+          - [Azure AD RBAC]({{ site.data.var.docsMicrosoftCom }}/azure/active-directory/roles/custom-overview)
             
          Why two? Evolution. This quote is about Amazon, but it
          applies to any evolving public cloud:
@@ -145,21 +151,18 @@ details not suitable for putting in the live repository.
           SigOPS
           2009](https://www.cs.cornell.edu/projects/ladis2009/talks/theimer-keynote-ladis2009.pdf).
           
-         For some more history, see [Classic subscription administrator roles, Azure roles, and Azure AD roles](https://docs.microsoft.com/en-us/azure/role-based-access-control/rbac-and-directory-admin-roles).
+         For some more history, see [Classic subscription administrator roles, Azure roles, and Azure AD roles]({{ site.data.var.docsMicrosoftCom }}/azure/role-based-access-control/rbac-and-directory-admin-roles).
 
       * You may have heard the term "Service Principal".  Managed Identity is a more 
         modern concept built around the older concept of Service Principal.
 
-      * [Overview of Managed Identities](https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/overview)
+      * For the complete documentation about managed identities, see [Overview of Managed Identities]({{ site.data.var.docsMicrosoftCom }}/azure/active-directory/managed-identities-azure-resources/overview)
 
          > a managed identity is a service principal of a special type
          > that can only be used with Azure resources. When the
          > managed identity is deleted, the corresponding service
          > principal is automatically removed.
          
-      * However, the concept of Service Principal is still relevant to
-        Azure AD.  And because Azure
-
    Why this is important for Jakarta EE on AKS
     
       * The offers we are using for Jakarta EE on AKS require a User
@@ -179,62 +182,20 @@ details not suitable for putting in the live repository.
 
 [JBoss EAP on Azure App Service](https://github.com/Azure-Samples/workshop-migrate-jboss-on-app-service)
 
-
-
-## WORK IN PROGRESS
+### Clean up
 
 <details>
   <summary>
-    WORK IN PROGRESS
-  </summary>
-  
-<details>
-  <summary>
-    PENDING ACTIONS BEFORE WORKSHOP DELIVERY
+    <b>5min</b> Remove resources created by the common set up.
   </summary>
 
-PENDING Update with link to etherpad from [riseup.net](https://pad.riseup.net/).
+1. In Cloud Shell,  `cd {{ site.data.var.repoPath }}/.github/workflows/`
 
-PENDING: fill in after morning reaches second draft state.
+1. `./teardown.sh`.
 
-PENDING: remove /en-us from all embedded links.
+1. Enter the disambiguation prefix that was output from `setup.sh` and press enter.
 
-PENDING: ensure the `setup.sh` script does what we need it to do.
-
-PENDING: create slides for instructor lead training for Open Liberty on AKS
-
-PENDING: TOC https://github.com/toshimaru/jekyll-toc/#installation
+1. The script removes any resources and repository secrets created by `setup.sh`.
 
 </details>
 
-   C. Cargotracker
-   
-      1. Run locally with Liberty Maven Plugin devc mode.
-      
-IV. WebLogic on AKS
-
-   A. Explain the role of the WebLogic Kubernetes Operator
-   
-      1. Domain home source types
-      
-         a. Domain on PV
-         
-         b. Model in image
-         
-      2. Why did Oracle do it this way?
-      
-         a. WebLogic has not been modularized like Liberty.
-         
-         b. Therefore, it is less "cloud native".
-         
-         c. The Operator is a very feature-packed piece of software.
-         
-   B. Deploy minimum viable runtime with Portal
-   
-   C. Deploy minimum viable runtime with GitHub Actions Infrastructure as Code
-   
-   D. Cargotracker
-   
-      1. Update workflow.
-      
-</details>

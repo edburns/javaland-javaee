@@ -1,20 +1,6 @@
 # Jakarta EE on Microsoft Azure with Cargo Tracker
 
-## Run Open Liberty locally
-
-<details>
-  <summary>
-    <b>40min</b> Run IBM Open Liberty locally. (Optional)
-  </summary>
-  
-</details> <!-- Run IBM Open Liberty locally. (Optional) -->
-
 ## Open Liberty on AKS
-
-<details>
-  <summary>
-    <b>90min</b> Run IBM Open Liberty on AKS.
-  </summary>
 
 ### Deploy the minimum viable cluster with the Portal
 
@@ -78,7 +64,7 @@
 
 1. How to connect to cluster with `kubectl` in Cloud Shell.
 
-   1. `az aks` command reference [docs.microsoft.com](https://docs.microsoft.com/en-us/cli/azure/aks?view=azure-cli-latest)
+   1. `az aks` command reference [docs.microsoft.com]({{ site.data.var.docsMicrosoftCom }}/cli/azure/aks?view=azure-cli-latest)
 
 1. **Self-guided**. How to visit the sample app.
 
@@ -142,11 +128,11 @@ than your pass allows.
     instance, Storage Account, and Storage Container, build the
     **cargotracker.war** and upload it to the Storage Container.
 
-      1. [Azure Database for PostgreSQL documentation](https://docs.microsoft.com/en-us/azure/postgresql/)
+      1. [Azure Database for PostgreSQL documentation]({{ site.data.var.docsMicrosoftCom }}/azure/postgresql/)
 
-      1. [Storage account overview](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-overview)
+      1. [Storage account overview]({{ site.data.var.docsMicrosoftCom }}/azure/storage/common/storage-account-overview)
 
-      1. [Azure storage container](https://docs.microsoft.com/en-us/cli/azure/storage/container?view=azure-cli-latest)
+      1. [Azure storage container]({{ site.data.var.docsMicrosoftCom }}/cli/azure/storage/container?view=azure-cli-latest)
 
 1. <a name="liberty-aks-pipeline-values">Capture values from outputs.</a> You will
    [need these later](#wls-aks-pipeline-values).
@@ -277,7 +263,5 @@ The Cargo Tracker main URL is the URL constructed in the preceding step.
 {% include exercise-cargotracker.md %}
 
 </details>
-
-</details> <!-- Open Liberty on AKS -->
 
 [home](/)

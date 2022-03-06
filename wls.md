@@ -42,7 +42,7 @@
    
    1. [Azure Container Insights integration](https://aka.ms/wls-aks-container-insights)
    
-   1. [Persist Volume integration](https://docs.microsoft.com/en-us/azure/aks/concepts-storage)
+   1. [Persist Volume integration]({{ site.data.var.docsMicrosoftCom }}/azure/aks/concepts-storage)
 
 1. In **Image selection** leave the values at the defaults.
 
@@ -108,7 +108,7 @@
 1. To verify you have it all, you can enter the following command in
    the Cloud Shell.
    
-      `echo <paste> | base64 -d` and press enter.`
+      `echo <paste> | base64 -d` and press enter.
       
       If you see valid JSON, you have captured the entire base64
       string to the clipboard.  Save the decoded value in your text
@@ -175,7 +175,7 @@ deployed the offer as you have configured it here.
     created earlier to do the following.
     
       1. Use the 
-         [Bicep](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview?tabs=Bicep)
+         [Bicep]({{ site.data.var.docsMicrosoftCom }}/azure/azure-resource-manager/bicep/overview?tabs=Bicep)
          infrastructure as code that stands behind the Portal offer from the preceding section to build an ARM template.
          
       1. Build up parameters that happen to represent the values you
@@ -207,6 +207,11 @@ deployed the offer as you have configured it here.
 
    1. Execute **shellCmdtoConnectAks** to connect to the cluster in the Cloud Shell.
    
+   1. Take note of the name of the value of the `--resource-group`
+      option to the command.  You will need this later.  This really
+      should be in the outputs.  [You are welcome to fix
+      this](https://github.com/oracle/weblogic-azure/issues/123).
+      
    1. Execute **shellCmdtoOutputWlsDomainYaml** to output a YAML
       description of the WebLogic domain to the file `domain.yml`.
       
@@ -219,14 +224,9 @@ deployed the offer as you have configured it here.
       For complete documentation about CRD, see the [Kubernetes
       site](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
       
-   1. Take note of the name of the value of the `--resource-group`
-      option to the command.  You will need this later.  This really
-      should be in the outputs.  [You are welcome to fix
-      this](https://github.com/oracle/weblogic-azure/issues/123).
-      
-      1. Execute **shellCmdtoOutputWlsVersionsandPatches** to output a text description of the runtime to a file `version.info`.
-      
-      {{ site.data.var.boast }}
+   1. Execute **shellCmdtoOutputWlsVersionsandPatches** to output a text description of the runtime to a file `version.info`.
+
+   {{ site.data.var.boast }}
 
    1. Obtain the URL of the cargotracker by looking at the value of
       the output **clusterExternalUrl**.
@@ -301,5 +301,25 @@ the preceding step, followed by `/cargo-tracker/`.
    1. Select **Run workflow**.
 
 </details>
+
+### Remove deployment
+
+<details>
+  <summary>
+    <b>5min</b> Remove resources to save your subscription cost.
+  </summary>
+
+You must remove the deployment to avoid consuming more Azure resources
+than your pass allows.
+
+1. In Cloud Shell, enter `az aks delete --no-wait --name <your cluster name> --resource-group <your resource group>`.
+
+1. In the Portal, find `<your resource group>` and select **Delete resource group**.
+
+1. Copy past the name of the resource group and select **Delete**.
+
+</details>
+
+
 
 [home](/)
