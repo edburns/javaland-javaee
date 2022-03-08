@@ -264,4 +264,170 @@ The Cargo Tracker main URL is the URL constructed in the preceding step.
 
 </details>
 
-[home](/)
+### (Optional) Run the Cargo Tracker app with liberty:dev
+
+<details>
+  <summary>
+    <b>60min</b> Use a local or cloud based development environment to run Cargo Tracker
+  </summary>
+  
+If you want to run cargo tracker locally, you need a fully equipped
+Java development environment with the following requirements.
+
+- JDK 11 or later
+- Maven 3.6.1 or later
+- Unix shell environment
+
+Or you could use a cloud based development environment such as GitHub
+Codespaces or GitPod.
+
+If you choose to use GitHub Codespaces, simply open the repository in
+Codespaces.
+
+If you choose to use GitPod, please follow the steps from the JBoss
+EAP afternoon exercise introduction section 1.1 only, **but use your
+fork of the {{ site.data.var.repoPath }} repository instead of
+workshop-migrate-jboss-on-app-service** as the project name. [Introduction section 1.1]({{ site.data.var.jbossEAPWorkshopRoot }}/{{ jbossEAPWorkshopInstructions }}/1-environment-setup.md#11---gitpod-setup)
+
+### Enable access from your development environment to the Azure Database for PostgreSQL
+
+1. Visit the Portal
+
+1. Find the resource group for your database deployment. It will be something like `wlsd-db-1953611437-2`.
+
+1. Within the resource group, select the resource of type **Azure Database for PostgreSQL single server**.
+
+1. In the **Settings** panel, select **Connection security**.
+
+1. In the middle of the page is the **Firewall rules** section.
+   Select the most secure option you can tolerate.
+   
+   1. If the portal has correctly determined IP address of your
+      development environment, as in parenthesis next to **+ Add current
+      client IP address**, select this option.
+      
+   1. If you know how to get the IP address of your cloud development
+      environment, you can enter the value in the **Start IP** and
+      **End IP** fields.
+      
+      1. You can try `nslookup`.  At the time writing, doing `nslookup
+         gitpod.io` and using the first octet from the IP address for
+         the **Start IP** and **End IP** values, followed by `.0.0.0`
+         and `.255.255.255`, respectively, worked.
+      
+   1. If there is no more secure option, you can open the database to
+      the entire public Internet by selecting **+ Add 0.0.0.0 -
+      255.255.255.254**.
+
+1. Select **Save**.  While the configuration is updating, you may
+   continue to the next step.
+
+### Edit the server.xml
+
+This section uses the `liberty:dev` to run Open Liberty in a JVM in
+your development environment.  For an introduction to `liberty:dev` see [Open Liberty development mode](https://www.openliberty.io/blog/2019/10/22/liberty-dev-mode.html).  For complete reference material see [the reference documentation](https://github.com/OpenLiberty/ci.maven#liberty-maven-plugin).
+
+1. In you development environment, open the `server.xml` file.  This
+   file is located at
+   `cargotracker-liberty/src/main/liberty/config/server.xml` in your
+   forked repository.
+   
+1. find the section with the xml element `<properties.postgresql>`.
+
+1. Make the edits as shown in this diff, hard coding the values using
+   the parameters collected previously.
+   
+   ```diff
+   --- a/cargotracker-liberty/src/main/liberty/config/server.xml
+   +++ b/cargotracker-liberty/src/main/liberty/config/server.xml
+   @@ -34,11 +34,11 @@
+        <dataSource id="CargoTrackerDB" jndiName="jdbc/CargoTrackerDB">
+            <jdbcDriver libraryRef="driver-library" />
+            <properties.postgresql
+   -            serverName="${db.server.name}"
+   -            portNumber="${db.port.number}"
+   -            databaseName="${db.name}"
+   -            user="${db.user}"
+   -            password="${db.password}"
+   +            serverName="wlsdb19536114372.postgres.database.azure.com"
+   +            portNumber="5432"
+   +            databaseName="postgres"
+   +            user="weblogic@wlsdb19536114372"
+   +            password="Secret123!"
+                ssl="${db.ssl}" />
+        </dataSource>
+        <variable name="db.ssl" defaultValue="false"/>
+   ```
+
+### Run the Liberty Maven Plugin in dev mode 
+
+1. In the terminal of your development environment, run `cd cargotracker-liberty`.
+
+1. `mvn -PopenLibertyOnAks clean package`
+
+1. `mvn -PopenLibertyOnAks liberty:dev`
+
+   If you are running in a cloud development environment, you may see
+   a pop up about port 9080, and it might give you the option to make
+   this port public.  You must say yes to this option.  If you do not
+   see this option, you will need to use your cloud development
+   environment steps to make this port public.
+
+   When you see this output text, you know the server is running successfully.
+   
+   ```bash
+   [INFO] *******************************************************************
+   [INFO] *** WARNING: Apache MyFaces-2 is running in DEVELOPMENT mode.   ***
+   [INFO] ***                                         ^^^^^^^^^^^         ***
+   [INFO] *** Do NOT deploy to your live server(s) without changing this. ***
+   [INFO] *** See Application#getProjectStage() for more information.     ***
+   [INFO] *******************************************************************
+   [INFO] 
+   [INFO] [AUDIT   ] CWWKZ0003I: The application cargo-tracker updated in 2.720 seconds.
+   ```
+
+{{ site.data.var.jsfBoast }}
+
+1. Obtain the URL for the cargotracker from your development environment.
+
+   1. If you are running locally, the url is simply `http://localhost:9080/`.
+   
+   1. If you are running in a cloud development environment, the
+      instructions vary depending on your environment.
+      
+      For GitPod, the following was known to work at the time of this
+      writing.
+      
+      1. In the lower right hand corner of the browser window is a
+         list of ports.  Select this list.
+         
+      1. The **Ports** tab should open.
+      
+      1. Hover the mouse over **9080** and options should appear.  One
+         option looks like a globe.  Select the globe.  A new tab
+         should open on that URL.
+         
+      1. If you see the Open Liberty start page, append a `/` to the URL.
+
+### Exercise the Cargo Tracker app
+
+The Cargo Tracker main URL is the URL constructed in the preceding step.
+
+{% include exercise-cargotracker.md %}
+
+### Restore database security
+
+Follow the same steps as in the section where you enabled access to
+the database from your development environment, but remove the
+firewall rule that allowed the access.
+
+Remember to select **Save**.
+
+### Clean up your development environment
+
+In the terminal for your development environment, cd to the top level
+of your cloned repository and run `git reset --hard`.
+
+</details>
+
+[home](../)

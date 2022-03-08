@@ -197,5 +197,9 @@ PENDING Update with link to etherpad from [riseup.net](https://pad.riseup.net/).
 
 1. The script removes any resources and repository secrets created by `setup.sh`.
 
+1. Remove the resource groups for the database and storage account.
+   These will be something like `wlsd-db-1953611437-2` and
+   `wlsd-sa-1953611437-2`, respectively.
+
 </details>
 

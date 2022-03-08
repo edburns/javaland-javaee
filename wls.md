@@ -226,7 +226,7 @@ deployed the offer as you have configured it here.
       
    1. Execute **shellCmdtoOutputWlsVersionsandPatches** to output a text description of the runtime to a file `version.info`.
 
-   {{ site.data.var.boast }}
+   {{ site.data.var.servletBoast }}
 
    1. Obtain the URL of the cargotracker by looking at the value of
       the output **clusterExternalUrl**.
@@ -322,4 +322,4 @@ than your pass allows.
 
 
 
-[home](/)
+[home](../)

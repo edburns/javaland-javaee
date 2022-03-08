@@ -10,6 +10,8 @@ wlsFullBrandName: Jakarta EE on Microsoft Azure with Cargo Tracker
 brandNameNumber: 12c
 partNumber: E48696-01
 docsMicrosoftCom: "https://docs.microsoft.com"
+jbossEAPWorkshopRoot: https://github.com/Azure-Samples/workshop-migrate-jboss-on-app-service/blob/main/instructions/
+jbossEAPWorkshopInstructions: blob/main/instructions/
 publicationDate: March 2021
 versionOr: 12.1.2.3
 # versionOr: 12.1.2.3 or 12.1.2.4 # edburns: only support 12.2.1.3 now.
@@ -27,4 +29,5 @@ passwordInFileNote: |-3
    * Even though this parameters file has values for sensitive fields such as passwords, these values are not echoed on the command line, or repeated in the logs because they are passed directly as `secureString` type in ARM.  **Please ensure any occurrences of the parameters file in the filesystem are sufficiently secured.**
    
 artifactsLocationTag: 2022-02-08-1-Q1
-boast: "1. Examine the `version.info`.  Look at the version of **Servlet Container**.  If it is 4.0, know that your instructor lead the team that developed the specification and wrote some of the code in the implementation running now."
+servletBoast: "1. Examine the `version.info`.  Look at the version of **Servlet Container**.  If it is 4.0, know that your instructor lead the team that developed the specification and wrote some of the code in the implementation running now."
+jsfBoast: "1. Notice the mention about Apache MyFaces-2.  Know that your instructor lead the team that developed the specification for MyFaces."
