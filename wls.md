@@ -57,7 +57,7 @@
       active Oracle support contract.  Without a support contract, you
       are running software that has not been patched against the
       latest security vulnerabilities, including the infamous
-      Log4shell.
+      Log4shell.  For complete details see the [Oracle documentation](https://aka.ms/wls-aks-ocr-doc).
       
       Thankfully, for this workshop, we are also deploying Azure App
       Gateway, and the offer sets up OWASP rules to protect against
