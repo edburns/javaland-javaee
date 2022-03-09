@@ -1,6 +1,9 @@
 name: Update Cargo Tracker to OpenLiberty on Aks
 
 on:
+  push:
+    branches:
+      -main
   workflow_dispatch:
     inputs:
       region:
