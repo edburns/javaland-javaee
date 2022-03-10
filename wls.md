@@ -13,7 +13,7 @@
 
 1. In the search box, without pressing enter, type "weblogic" without the quotes.
 
-1. In the section of suggested results labeled **Marketplace**, select **Oracle WebLogic Server on Azure Kubrenets Service**.
+1. In the section of suggested results labeled **Marketplace**, select **Oracle WebLogic Server on Azure Kubernetes Service**.
 
 1. Select **Create**.
 
@@ -194,7 +194,7 @@ deployed the offer as you have configured it here.
 
 <details>
   <summary>
-    <b>15Min</b> <b>Self-guided</b>. Take a tour of the deployment.
+    <b>10Min</b> <b>Self-guided</b>. Take a tour of the deployment.
   </summary>
   
 **Note** The resource group name will be prefixed by **wlsd-aks**.
@@ -230,14 +230,6 @@ deployed the offer as you have configured it here.
 
    1. Obtain the URL of the cargotracker by looking at the value of
       the output **clusterExternalUrl**.
-      
-#### Exercise the Cargo Tracker app
-
-The Cargo Tracker main URL is the **clusterExternalUrl** obtained in
-the preceding step, followed by `/cargo-tracker/`.
-
-{% include exercise-cargotracker.md %}
-
 
 </details>
 
@@ -299,6 +291,20 @@ the preceding step, followed by `/cargo-tracker/`.
    1. Leave the remaining values at their defaults.
    
    1. Select **Run workflow**.
+
+</details>
+      
+### Exercise the Cargo Tracker app
+
+<details>
+  <summary>
+    <b>5Min</b> <b>Self-guided</b>. Take a tour of the Cargo Tracker.
+  </summary>
+
+The Cargo Tracker main URL is the **clusterExternalUrl** obtained in
+the preceding step, followed by `/cargo-tracker/`.
+
+{% include exercise-cargotracker.md %}
 
 </details>
 
