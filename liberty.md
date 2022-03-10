@@ -430,4 +430,4 @@ of your cloned repository and run `git reset --hard`.
 
 </details>
 
-[home](../)
+[home](../index/)
