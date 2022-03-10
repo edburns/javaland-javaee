@@ -153,6 +153,7 @@ jobs:
             - name: Verify that the app is update
               run: |
                 # install dependencies
+                sudo apt-get update
                 sudo apt-get install libegl1\
                       libhyphen0\
                       libopus0\
