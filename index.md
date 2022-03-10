@@ -170,6 +170,10 @@ PENDING Update with link to etherpad from [riseup.net](https://pad.riseup.net/).
         
 </details> <!-- Common set up -->
 
+## JBoss EAP on Azure App Service
+
+[JBoss EAP on Azure App Service](https://github.com/Azure-Samples/workshop-migrate-jboss-on-app-service)
+
 ## Open Liberty on AKS
 
 [Liberty on AKS](liberty)
@@ -177,10 +181,6 @@ PENDING Update with link to etherpad from [riseup.net](https://pad.riseup.net/).
 ## WebLogic Server on AKS
 
 [WebLogic Server on AKS](wls)
-
-## JBoss EAP on Azure App Service
-
-[JBoss EAP on Azure App Service](https://github.com/Azure-Samples/workshop-migrate-jboss-on-app-service)
 
 ### Clean up
 
