@@ -28,23 +28,23 @@ jobs:
             - name: Verify secrets
               run: |
                 echo "Verify necessary secrets are set."
-                if [ "$EJB01OlAksClusterName == '' ] ; then
+                if [ -z "$EJB01OlAksClusterName" ] ; then
                   echo "EJB01OlAksClusterName not set. Exiting."
                   exit 1
                 fi
-                if [ "$EJB01OlAksResourceGroup == '' ] ; then
+                if [ -z "$EJB01OlAksResourceGroup" ] ; then
                   echo "EJB01OlAksResourceGroup not set. Exiting."
                   exit 1
                 fi
-                if [ "$EJB01azureACRServer == '' ] ; then
+                if [ -z "$EJB01azureACRServer" ] ; then
                   echo "EJB01azureACRServer not set. Exiting."
                   exit 1
                 fi
-                if [ "$EJB01azureACRUserName == '' ] ; then
+                if [ -z "$EJB01azureACRUserName" ] ; then
                   echo "EJB01azureACRUserName not set. Exiting."
                   exit 1
                 fi
-                if [ "$EJB01dbName == '' ] ; then
+                if [ -z "$EJB01dbName" ] ; then
                 EJB01dbName n echo "Not set. Exiting."
                   exit 1
                 fi
