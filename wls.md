@@ -328,4 +328,4 @@ than your pass allows.
 
 
 
-[home](../index/)
+[home](index.md)
