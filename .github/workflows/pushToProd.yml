@@ -1,4 +1,4 @@
-name: Git push to productio
+name: Git push to production
 
 on: push
 
