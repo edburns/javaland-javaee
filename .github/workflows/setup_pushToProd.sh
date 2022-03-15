@@ -68,8 +68,6 @@ USE_GITHUB_CLI=false
   USE_GITHUB_CLI=false
 }
 
-exit
-
 msg "${GREEN}(6/6) Create secrets in GitHub"
 if $USE_GITHUB_CLI; then
   {
