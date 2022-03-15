@@ -14,9 +14,9 @@ env:
     dbName: ${{ secrets.EJB01dbName }}
     dbPassword: ${{ secrets.DB_PASSWORD }}
     dbPortNumber: 5432
-    dbServerName: ${{ github.event.inputs.dbName }}.postgres.database.azure.com
+    dbServerName: ${{ secrets.dbName }}.postgres.database.azure.com
     dbType: postgres
-    dbUserName: weblogic@${{ github.event.inputs.dbName }}
+    dbUserName: weblogic@${{ secrets.dbName }}
     location: ${{ github.event.inputs.region }}
     namespace: default
     replicas: 1
@@ -28,24 +28,24 @@ jobs:
             - name: Verify secrets
               run: |
                 echo "Verify necessary secrets are set."
-                if [ -z "$EJB01OlAksClusterName" ] ; then
+                if [ -z "${{ env.OlAksClusterName }}" ] ; then
                   echo "EJB01OlAksClusterName not set. Exiting."
                   exit 1
                 fi
-                if [ -z "$EJB01OlAksResourceGroup" ] ; then
+                if [ -z "${{ env.OlAksResourceGroup }}" ] ; then
                   echo "EJB01OlAksResourceGroup not set. Exiting."
                   exit 1
                 fi
-                if [ -z "$EJB01azureACRServer" ] ; then
+                if [ -z "${{ env.azureACRServer }}" ] ; then
                   echo "EJB01azureACRServer not set. Exiting."
                   exit 1
                 fi
-                if [ -z "$EJB01azureACRUserName" ] ; then
+                if [ -z "${{ env.azureACRUserName }}" ] ; then
                   echo "EJB01azureACRUserName not set. Exiting."
                   exit 1
                 fi
-                if [ -z "$EJB01dbName" ] ; then
-                EJB01dbName n echo "Not set. Exiting."
+                if [ -z "${{ env.dbName }}" ] ; then
+                  echo "EJB01dbName Not set. Exiting."
                   exit 1
                 fi
             - name: Set up JDK 1.8
