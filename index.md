@@ -21,8 +21,14 @@ PENDING Update with link to etherpad from [riseup.net](https://pad.riseup.net/).
   <summary>
     <b>25min</b> Configure essential credentials for the workshop.
   </summary>
+  
+### Set up for JBoss EAP
 
-1. **10min** **Self-guided**. Activate your azure pass to create your subscription.
+1. Do section 1 from the JBoss EAP workshop. [https://github.com/Azure-Samples/workshop-migrate-jboss-on-app-service/blob/main/instructions/1-environment-setup.md](https://github.com/Azure-Samples/workshop-migrate-jboss-on-app-service/blob/main/instructions/1-environment-setup.md)
+
+### Set up for Open Liberty 
+
+1. ~~**10min** **Self-guided**. Activate your azure pass to create your subscription.~~
 
 1. **5min** **Self-guided**. Make sure Azure Cloud Shell works in your subscription.
 
@@ -169,7 +175,7 @@ PENDING Update with link to etherpad from [riseup.net](https://pad.riseup.net/).
         Assigned Managed Identity to successfully operate.
         
 </details> <!-- Common set up -->
-
+    
 ## JBoss EAP on Azure App Service
 
 [JBoss EAP on Azure App Service](https://github.com/Azure-Samples/workshop-migrate-jboss-on-app-service)

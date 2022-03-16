@@ -190,6 +190,8 @@ deployed the offer as you have configured it here.
 
 </details>
 
+### During deployment, instructor lead training for WebLogic Server
+
 ### After deployment completes
 
 <details>
