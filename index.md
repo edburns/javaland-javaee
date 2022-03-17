@@ -15,6 +15,11 @@ details not suitable for putting in the live repository.
 
 PENDING Update with link to etherpad from [riseup.net](https://pad.riseup.net/).
 
+## Slides or website?
+
+The workshop is mostly done with this website, but the instructor will
+present some slides several times.  You can download the slides [here](burns_ahlgrimm_javaland.pdf).
+
 ## Common set up for the rest of the day
 
 <details>
