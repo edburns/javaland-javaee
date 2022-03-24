@@ -1,6 +1,6 @@
 name: Git push to production
 
-on: push
+#on: push
 
 env:
     OlAksClusterName: ${{ secrets.EJB01OlAksClusterName }}
