@@ -136,15 +136,30 @@ than your pass allows.
 
 1. <a name="liberty-aks-pipeline-values">Capture values from outputs.</a> You will
    [need these later](#wls-aks-pipeline-values).
-
-   1. Disambiguation prefix.  This will be something like `19251229631`.
    
-   1. Database name.  This will be something like `wlsdb19251229631`.
+   1. From the **Actions** tab, select **Setup DB and Storage
+      Account**, then select the most recent run of that workflow.
    
-   1. Storage account name.  This will be something like `wlsdsa19251229631`.
+   1. Under **Jobs** on the left, select **deploy-db**.
    
-   1. Storage container within storage account.  This will be
-      something like `wlsdcon19251229631`.
+   1. In the log pane on the right, expand **Set Up Azure Postgresql
+      to Test dbTemplate**.
+   
+   1. Expand **Run azure/CLI**.  Look in the **env** section.
+   
+   1. Disambiguation prefix.  This value is the numeric value in the
+      middle of the value for **resourceGroupForDB**.  It will be
+      something like `19251229631`.
+   
+   1. Database name.  This value is the **dbName**.  It will be
+      something like `wlsdb19251229631`.
+   
+   1. Storage account name.  This value is the **storageAccountName**.
+      It will be something like `wlsdsa19251229631`.
+   
+   1. Storage container within storage account.  This value is the
+      **storageContainerName**.  It will be something like
+      `wlsdcon19251229631`.
 
 #### Deploy Open Liberty on AKS from workflow
    
