@@ -690,5 +690,41 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+          <id>server-xml</id>
+          <properties>
+              <db.server.name>${env.DB_SERVER_NAME}</db.server.name>
+              <db.port.number>${env.DB_PORT_NUMBER}</db.port.number>
+              <db.name>${env.DB_NAME}</db.name>
+              <db.user>${env.DB_USER}</db.user>
+              <db.password>${env.DB_PASSWORD}</db.password>
+          </properties>
+          <build>
+            <plugins>
+              <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                  <execution>
+                    <id>server-xml</id>
+                    <phase>validate</phase>
+                    <goals>
+                      <goal>copy-resources</goal>
+                    </goals>
+                    <configuration>
+                      <outputDirectory>${project.build.directory}/liberty/wlp/usr/servers/defaultServer</outputDirectory>
+                      <resources>
+                        <resource>
+                          <directory>src/main/liberty/config</directory>
+                          <filtering>true</filtering>
+                        </resource>
+                      </resources>
+                    </configuration>
+                  </execution>
+                </executions>
+              </plugin>
+            </plugins>
+          </build>
+        </profile>          
     </profiles>
 </project>
