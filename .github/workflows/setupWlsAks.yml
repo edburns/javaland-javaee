@@ -38,7 +38,7 @@ env:
     wlsPassword: ${{ secrets.WLS_PSW }}
     userAssignedManagedIdentity: ${{ secrets.USER_ASSIGNED_MANAGED_IDENTITY_ID }}
     aksRepoUserName: galiacheng
-    aksRepoBranchName: f2b1d17410fd516cd69812c2f8a926016536ac74
+    aksRepoBranchName: 1a110da7686221582a67e7912c60c91bd2c3dc39
     aksClusterConfigMapName: wlsd-wdt-config-map-${{ github.event.inputs.disambiguationSuffix }}
 
 jobs:
